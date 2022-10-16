@@ -1,9 +1,14 @@
 ## Packages
 from os import path
+import sys
 import threading
 import json
 from datetime import datetime
 from pynput.keyboard import Listener
+
+## Append this directory to path (If append messed change to: sys.path.insert(0, path.dirname(__file__)))
+sys.path.append(path.dirname(__file__))
+from shared import *
 
 ## Local dependencies
 
@@ -25,7 +30,8 @@ class KeyboardController:
         self.HOLD = False
         self.RELEASED = True
 
-        self.load_keybinds()
+        # self.load_keybinds()
+        load_keybinds(self, "keyboard")
     
     def __str__(self):
         # print('{0} at {1}'.format('Pressed' if pressed else 'Released',x, y)))
@@ -41,36 +47,11 @@ class KeyboardController:
             Action Ctrl: {"{0}".format("None" if self.ACTION_CTRL is None else "Set")}
         """
     
-    def debug(self, str):
-        if (self.DEBUG):
-            print(str)
-            self.log(str)
-
-    def log(self, msg):
-        if (self.LOGGER is None):
-            return "Logger is None"
-        
-        self.LOGGER.log(msg)
-    
-    def load_keybinds(self):
-        f = open(self.CONFIG_PATH, "r")
-        data = json.load(f)
-        f.close()
-
-        for bind in data['binds']:
-            if (bind['peripheral'] == "keyboard"):
-                self.KEYBINDS.append(bind)
-                if (bind['event'] == "up"):
-                    self.EVENTS_UP.append(bind)
-                elif (bind['event'] == "down"):
-                    self.EVENTS_DOWN.append(bind)
-                elif (bind['event'] == "hold"):
-                    self.EVENTS_HOLD.append(bind)
-    
     def start_listener(self):
         self.THREAD = threading.Thread(target=self.start_listener_thread, name="KeyboardController", args=[])
         self.THREAD.start()
-        self.log("KeyboardController Started...")
+        # self.log("KeyboardController Started...")
+        log(self, "KeyboardController Started...")
 
     def start_listener_thread(self):
         if (self.ACTION_CTRL == None):
@@ -110,83 +91,41 @@ class KeyboardController:
 
     def key_down(self, key):
         keep_alive = True
-        self.debug(f"{key} down")
+        # self.debug(f"{key} down")
+        debug(self, f"{key} down")
 
-        self.addEventToHistory(key, "down")
-        self.doActionIfThereIsOne(key, self.EVENTS_DOWN)
+        # self.addEventToHistory(key, "down")
+        addEventToHistory(self, key, "down")
+        # self.doActionIfThereIsOne(key, self.EVENTS_DOWN)
+        doActionIfThereIsOne(self, key, self.EVENTS_DOWN)
 
         self.LAST_KEY = key
         return keep_alive
 
     def key_hold(self, key):
         keep_alive = True
-        self.debug(f"{key} hold")
+        # self.debug(f"{key} hold")
+        debug(self, f"{key} hold")
 
-        self.addEventToHistory(key, "hold")
-        self.doActionIfThereIsOne(key, self.EVENTS_HOLD)
+        # self.addEventToHistory(key, "hold")
+        addEventToHistory(self, key, "hold")
+        # self.doActionIfThereIsOne(key, self.EVENTS_HOLD)
+        doActionIfThereIsOne(self, key, self.EVENTS_HOLD)
 
         return keep_alive
 
     def key_up(self, key):
         keep_alive = True
-        self.debug(f"{key} up")
+        # self.debug(f"{key} up")
+        debug(self, f"{key} up")
         
-        self.addEventToHistory(key, "up")
-        self.doActionIfThereIsOne(key, self.EVENTS_UP)
-        
-        return keep_alive
-
-    def doActionIfThereIsOne(self, key, bindings):
-        keep_alive = True
-        if (len(bindings) > 0):
-            bind = self.key_exist_as_bind(key, bindings)
-            if (type(bind) is dict):
-                if ("toggle" in bind["action"] or "kill" in bind["action"] or not self.PAUSED):
-                    keep_alive = self.ACTION_CTRL.handleAction(bind['action'])
+        # self.addEventToHistory(key, "up")
+        addEventToHistory(self, key, "up")
+        # self.doActionIfThereIsOne(key, self.EVENTS_UP)
+        doActionIfThereIsOne(self, key, self.EVENTS_UP)
         
         return keep_alive
 
-    def addEventToHistory(self, key, event):
-        new_event = {
-            "key": key,
-            "event": event,
-            "datetime": datetime.now().strftime("%d/%m/%Y %H:%M:%S") # dd/mm/YY H:M:S
-        }
-        if (new_event['event'] == "hold"):
-            new_event['event'] = "hold_start"
-        
-        try:
-            last_event = self.ACTION_CTRL.EVENT_HISTORY[len(self.ACTION_CTRL.EVENT_HISTORY)-1]
-            if (new_event['key'] == last_event['key'] and new_event['event'] == last_event['event']):
-                pass ## Do not save duplicate events
-            else:
-                if (last_event['event'] == "hold_start" and new_event['event'] == "up"):
-                    new_event['event'] = "hold_stop"
-
-                self.ACTION_CTRL.EVENT_HISTORY.append(new_event)
-        except IndexError:
-                self.ACTION_CTRL.EVENT_HISTORY.append(new_event)
-        
-
-    ## Check if the pressed key exist in the given binds list
-    def key_exist_as_bind(self, key, binds):
-        for bind in binds:
-            try: 
-                if (str(key.char) == str(bind['key'])):
-                    return bind
-            except KeyError: # Raised if ['key'] does not exist in bind
-                if (str(key.char) in bind['keys']):
-                        return bind
-            except AttributeError: # Raised if key.char does not exist
-                try:
-                    if (str(key) == str(bind['key'])):
-                        return bind
-                except KeyError: # Raised again if ['key'] does not exist in bind
-                        if (str(key) in str(bind['keys'])):
-                            return bind
-
-                
-        return False
     
 ## Usage:
 # keyboardCtrl = KeyboardController(debug = True, config_path = "keybindings.json", base_path = "D:\Folders\Configs", logger = logger)

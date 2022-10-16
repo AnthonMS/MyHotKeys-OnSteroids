@@ -1,7 +1,19 @@
-16/10/2022 19:24:13: LOG CLEARED
-16/10/2022 19:24:13: KeyboardController Started...
-16/10/2022 19:24:13: MouseController Started...
-16/10/2022 19:24:18: Key.end down
-16/10/2022 19:24:18: Key.end up
-16/10/2022 19:24:18: Keyboard Listener Terminated
-16/10/2022 19:24:18: Mouse Listener Terminated
+16/10/2022 21:59:12: LOG CLEARED
+16/10/2022 21:59:12: KeyboardController Started...
+16/10/2022 21:59:12: MouseController Started...
+16/10/2022 21:59:15: Button.left - down - x: 2883 y: 912
+16/10/2022 21:59:15: Button.left - up - x: 2883 y: 912
+16/10/2022 21:59:15: Button.right - down - x: 2882 y: 912
+16/10/2022 21:59:15: Button.left - down - x: 2882 y: 912
+16/10/2022 21:59:15: Button.right - up - x: 2882 y: 912
+16/10/2022 21:59:15: Button.left - up - x: 2882 y: 912
+16/10/2022 21:59:15: 'f' down
+16/10/2022 21:59:16: 'g' down
+16/10/2022 21:59:16: 'f' up
+16/10/2022 21:59:16: 'h' down
+16/10/2022 21:59:16: 'g' up
+16/10/2022 21:59:16: 'h' up
+16/10/2022 21:59:17: Key.end down
+16/10/2022 21:59:17: Key.end up
+16/10/2022 21:59:17: Keyboard Listener Terminated
+16/10/2022 21:59:17: Mouse Listener Terminated

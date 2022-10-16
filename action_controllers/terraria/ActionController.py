@@ -22,7 +22,6 @@ class ActionController(ScriptController):
         self.CALCULATED_UI_SIZE = 100
 
         self.loadCalibration()
-        # print("Loaded Calibration:", self.CALIBRATION_CONFIG)
 
         if (not self.CALIBRATED):
             print("Please start the game and run the calibration automation.")
