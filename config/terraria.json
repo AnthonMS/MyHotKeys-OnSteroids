@@ -1,0 +1,54 @@
+{
+    "binds": [
+        {
+            "action": "calibrate",
+            "peripheral": "keyboard",
+            "key": "-",
+            "event": "down"
+        },
+        {
+            "action": "staff_of_discord",
+            "peripheral": "mouse",
+            "key": "Button.middle",
+            "event": "down"
+        },
+        {
+            "action": "cellphone",
+            "peripheral": "keyboard",
+            "key": "h",
+            "event": "up"
+        },
+
+
+        {
+            "action": "kill",
+            "peripheral": "keyboard",
+            "key": "Key.end",
+            "event": "up"
+        },
+        {
+            "action": "toggle",
+            "peripheral": "keyboard",
+            "key": "Key.home",
+            "event": "up"
+        }
+    ],
+    "actions": [
+        {
+            "name": "calibrate",
+            "description": "This will go through all of the hotbar slots and calibrate where to look for active slots and it will also automatically map the Staff of discord and the cellphone to the slots they are in, if they exist."
+        },
+        {
+            "name": "staff_of_discord",
+            "description": "Switch to staff of discord, click the mouse, switch back to previous active slot.",
+            "example": {
+            }
+        },
+        {
+            "name": "cellphone",
+            "description": "Switch to cellphone, click the mouse, switch back to previous active slot.",
+            "example": {
+            }
+        }
+    ]
+}
