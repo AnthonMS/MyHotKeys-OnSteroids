@@ -3,6 +3,7 @@
 
 
 ## TODO:
+- Instead of mkaing a shared.py for the shared functions between input controllers. Make a "InputController" which will be the parent class for both mouse and keyboard. This way they will inherit the functionality instead of importing it.
 - Make bind config key "hold_time". This will make it so hold will only fire when it has been held for given amount of time.
 - Research making the script a command in windows registry
 - Research creating windows tray icons that when clicked will show buttons for "pause"/"start" and "kill" for mouse, keyboard and both
