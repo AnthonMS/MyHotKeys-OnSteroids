@@ -111,6 +111,7 @@ class ScriptController:
 
             
     def importActions(self):
+        print("keyboard keybinds:", self.KEYBOARD_CTRL.KEYBINDS)
         dir_path = os.path.join(self.BASE_PATH, "actions")
         # dir_path = os.path.dirname(os.path.abspath(__file__))
         files_in_dir = [f[:-3] for f in os.listdir(dir_path)

@@ -17,8 +17,6 @@ class ActionController(ScriptController):
     def __str__(self):
         return f"""
         {super().__str__()}
-        Custom ActionController:
-            Nothing
         """
 
     def handleAction(self, actionStr):

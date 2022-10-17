@@ -101,12 +101,6 @@ if __name__ == "__main__":
     action_logger = Logger(base_path = base_path_log, log = log)
     logger.clear()
     action_logger.clear()
-    
-    try:
-        mod = __import__(f'action_controllers.{ctrl_name}.ActionController', fromlist=['ActionController'])
-        ActionControllerDynamic = getattr(mod, 'ActionController')
-    except ModuleNotFoundError:
-        pass
 
     keyboardCtrl = KeyboardController(debug = debug_keyboard, config = config, base_path = base_path, logger = logger)
     mouseCtrl = MouseController(debug = debug_mouse, config = config, base_path = base_path, logger = logger)
