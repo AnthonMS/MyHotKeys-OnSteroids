@@ -110,7 +110,7 @@ if __name__ == "__main__":
 
     keyboardCtrl = KeyboardController(debug = debug_keyboard, config = config, base_path = base_path, logger = logger)
     mouseCtrl = MouseController(debug = debug_mouse, config = config, base_path = base_path, logger = logger)
-    actionCtrl = ActionController(debug = debug_actions, keyboard_ctrl = keyboardCtrl, mouse_ctrl = mouseCtrl, logger = action_logger)
+    actionCtrl = ActionController(debug = debug_actions, keyboard_ctrl = keyboardCtrl, mouse_ctrl = mouseCtrl, logger = action_logger, base_path = base_path)
 
     keyboardCtrl.ACTION_CTRL = actionCtrl
     mouseCtrl.ACTION_CTRL = actionCtrl

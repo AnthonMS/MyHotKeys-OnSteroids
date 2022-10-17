@@ -1,16 +1,21 @@
 ## Packages
+import os, sys
 from pynput import mouse, keyboard
 
 ## Local dependencies
 
 
 class ScriptController:
-    def __init__(self, keyboard_ctrl = None, mouse_ctrl = None, debug = True, logger = None):
+    def __init__(self, keyboard_ctrl = None, mouse_ctrl = None, debug = True, logger = None, base_path = ""):
         self.DEBUG = debug
+        self.BASE_PATH = base_path
         self.LOGGER = logger
         self.KEYBOARD_CTRL = keyboard_ctrl
         self.MOUSE_CTRL = mouse_ctrl
         self.EVENT_HISTORY = []
+
+        self.ACTIONS = []
+        self.importActions()
     
     def __str__(self):
         return f"""
@@ -54,12 +59,9 @@ class ScriptController:
             return self.kill(action)
         elif ("toggle" in action):
             return self.toggle(action)
-        elif (action == "test"):
-            self.test()
-    
 
-    def test(self):
-        self.debug("We are testing this button...")
+        if (action in self.ACTIONS):
+            return eval(action + "(self)")
 
 
     ## Toggle the keyboard listener on/off
@@ -106,3 +108,22 @@ class ScriptController:
                 self.debug(f"Keyboard Listener Terminated")
             
             return "kill"
+
+            
+    def importActions(self):
+        dir_path = os.path.join(self.BASE_PATH, "actions")
+        # dir_path = os.path.dirname(os.path.abspath(__file__))
+        files_in_dir = [f[:-3] for f in os.listdir(dir_path)
+                        if f.endswith('.py') and f != '__init__.py']
+        for f in files_in_dir:
+            mod = __import__('actions.'+f, fromlist=[f])
+            to_import = [getattr(mod, x) for x in dir(mod)]
+            ### if isinstance(getattr(mod, x), type)]  # if you need classes only
+
+            for i in to_import:
+                try:
+                    setattr(sys.modules[__name__], i.__name__, i)
+                    if not i.__name__ in self.ACTIONS:
+                        self.ACTIONS.append(i.__name__)
+                except AttributeError:
+                    pass

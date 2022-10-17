@@ -67,10 +67,21 @@ class MouseController:
         return False  # Stopping mouse thread
 
     def on_click(self, x, y, button, pressed):
+        keep_alive = True
         if (pressed):
-            return self.button_down(button, x, y)
+            keep_alive = self.button_down(button, x, y)
         else:
-            return self.button_up(button, x, y)
+            keep_alive = self.button_up(button, x, y)
+
+        if (isinstance(keep_alive, bool)):
+            return keep_alive
+
+        if ("kill" in keep_alive):
+            ## TODO: Make it kill both mouse and keyboard
+            return False
+        else:
+            return True
+            
 
     def on_move(self, x, y):
         if (False):

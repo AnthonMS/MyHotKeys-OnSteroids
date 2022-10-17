@@ -6,6 +6,18 @@
             "key": "-",
             "event": "down"
         },
+        {
+            "action": "secondAction",
+            "peripheral": "keyboard",
+            "key": "+",
+            "event": "down"
+        },
+        {
+            "action": "thirdAction",
+            "peripheral": "keyboard",
+            "key": "*",
+            "event": "down"
+        },
 
 
 

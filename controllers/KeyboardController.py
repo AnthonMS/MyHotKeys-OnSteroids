@@ -70,23 +70,41 @@ class KeyboardController:
 
 
     def on_press(self, key):
+        keep_alive = True
+
         if (key == self.LAST_KEY and not self.RELEASED):
             self.HOLD = True
         elif (key != self.LAST_KEY and not self.RELEASED):
             self.HOLD = False
 
         if (self.HOLD):
-            return self.key_hold(key)
+            keep_alive = self.key_hold(key)
         else:
             self.RELEASED = False
-            return self.key_down(key)
-
+            keep_alive = self.key_down(key)
+        
+        if (isinstance(keep_alive, bool)):
+            return keep_alive
+        if (not keep_alive or "kill" in keep_alive):
+            ## TODO: Make it kill both mouse and keyboard
+            return False
+        else:
+            return True
 
     def on_release(self, key):
+        keep_alive = True
         self.HOLD = False
         self.RELEASED = True
 
-        return self.key_up(key)
+        keep_alive = self.key_up(key)
+        
+        if (isinstance(keep_alive, bool)):
+            return keep_alive
+        if ("kill" in keep_alive):
+            ## TODO: Make it kill both mouse and keyboard
+            return False
+        else:
+            return True
 
 
     def key_down(self, key):
@@ -97,7 +115,7 @@ class KeyboardController:
         # self.addEventToHistory(key, "down")
         addEventToHistory(self, key, "down")
         # self.doActionIfThereIsOne(key, self.EVENTS_DOWN)
-        doActionIfThereIsOne(self, key, self.EVENTS_DOWN)
+        keep_alive = doActionIfThereIsOne(self, key, self.EVENTS_DOWN)
 
         self.LAST_KEY = key
         return keep_alive
@@ -110,7 +128,7 @@ class KeyboardController:
         # self.addEventToHistory(key, "hold")
         addEventToHistory(self, key, "hold")
         # self.doActionIfThereIsOne(key, self.EVENTS_HOLD)
-        doActionIfThereIsOne(self, key, self.EVENTS_HOLD)
+        keep_alive = doActionIfThereIsOne(self, key, self.EVENTS_HOLD)
 
         return keep_alive
 
@@ -122,7 +140,7 @@ class KeyboardController:
         # self.addEventToHistory(key, "up")
         addEventToHistory(self, key, "up")
         # self.doActionIfThereIsOne(key, self.EVENTS_UP)
-        doActionIfThereIsOne(self, key, self.EVENTS_UP)
+        keep_alive = doActionIfThereIsOne(self, key, self.EVENTS_UP)
         
         return keep_alive
 
