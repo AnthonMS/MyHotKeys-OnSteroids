@@ -18,6 +18,12 @@
             "key": "*",
             "event": "down"
         },
+        {
+            "action": "terrariaTest",
+            "peripheral": "keyboard",
+            "key": "m",
+            "event": "down"
+        },
 
 
 

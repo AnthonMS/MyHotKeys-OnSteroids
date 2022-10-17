@@ -10,12 +10,13 @@ This is my take on creating a program for easily configuring hotkeys and shortcu
 
 
 ## TODO:
+- Update action importer to go through all folders in actions so we can split action scripts up into folders. Do not do it recursively since actions should just be stored in the root of actions or in the root of another folder in actions.
 - Instead of making a shared.py for the shared functions between input controllers. Make a "InputController" which will be the parent class for both mouse and keyboard. This way they will inherit the functionality instead of importing it.
-- Make bind config key "hold_time". This will make it so hold will only fire when it has been held for given amount of time.
 - Research making the script a command in windows registry
 - Research creating windows tray icons that when clicked will show buttons for "pause"/"start" and "kill" for mouse, keyboard and both
 - Create a package-installer helper function in ScriptController that will install the needed packages automatically. ActionController should come with a requirements.txt file.
 - Make hold_start and hold_stop instead of only hold action
+- Make config key "hold_time". This will make it so hold will only fire when it has been held for given amount of time.
 - Add new config key "event_type" which will take in the values "once"/"toggle"/"until_release"/"sequence"
      This key will tell the script if an action should be fired once, until button/key is released or until the button/key is pressed again.
      The until_release will obviously only be for "hold_start" actions

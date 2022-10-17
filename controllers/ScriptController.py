@@ -115,11 +115,15 @@ class ScriptController:
         all_actions = []
         for bind in all_binds:
             all_actions.append(bind['action'])
+            print(f"Importing action: {bind['action']}")
 
         dir_path = os.path.join(self.BASE_PATH, "actions")
         # dir_path = os.path.dirname(os.path.abspath(__file__))
-        files_in_dir = [f[:-3] for f in os.listdir(dir_path)
-                        if f.endswith('.py') and f != '__init__.py']
+        files_in_dir = [f[:-3] for f in os.listdir(dir_path) if f.endswith('.py') and f != '__init__.py']
+        dirs_in_dir = [f for f in os.listdir(dir_path) if os.path.isdir(dir_path+"/"+f) and f != '__pycache__' ]
+        ## TODO
+        ## Should it go into all files in these folders? Yes But not into other subfolders.
+
         for f in files_in_dir:
             mod = __import__('actions.'+f, fromlist=[f])
             to_import = [getattr(mod, x) for x in dir(mod)]
