@@ -111,7 +111,11 @@ class ScriptController:
 
             
     def importActions(self):
-        print("keyboard keybinds:", self.KEYBOARD_CTRL.KEYBINDS)
+        all_binds = [*self.KEYBOARD_CTRL.KEYBINDS, *self.MOUSE_CTRL.KEYBINDS]
+        all_actions = []
+        for bind in all_binds:
+            all_actions.append(bind['action'])
+
         dir_path = os.path.join(self.BASE_PATH, "actions")
         # dir_path = os.path.dirname(os.path.abspath(__file__))
         files_in_dir = [f[:-3] for f in os.listdir(dir_path)
@@ -123,8 +127,8 @@ class ScriptController:
 
             for i in to_import:
                 try:
-                    setattr(sys.modules[__name__], i.__name__, i)
-                    if not i.__name__ in self.ACTIONS:
+                    if i.__name__ in all_actions and not i.__name__ in self.ACTIONS:
+                        setattr(sys.modules[__name__], i.__name__, i)
                         self.ACTIONS.append(i.__name__)
                 except AttributeError:
                     pass
