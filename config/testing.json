@@ -1,0 +1,135 @@
+{
+    "binds": [
+        {
+            "action": "firstAction",
+            "peripheral": "keyboard",
+            "key": "-",
+            "event": "down"
+        },
+
+
+
+
+        {
+            "action": "kill",
+            "peripheral": "keyboard",
+            "key": "Key.end",
+            "event": "up"
+        },
+        {
+            "action": "kill_keyboard",
+            "peripheral": "keyboard",
+            "key": "Key.page_down",
+            "event": "up"
+        },
+        {
+            "action": "kill_mouse",
+            "peripheral": "mouse",
+            "key": "Button.x1",
+            "event": "up"
+        },
+        {
+            "action": "kill_mouse",
+            "peripheral": "keyboard",
+            "key": "Key.delete",
+            "event": "up"
+        },
+        {
+            "action": "toggle",
+            "peripheral": "keyboard",
+            "key": "Key.home",
+            "event": "up"
+        },
+        {
+            "action": "toggle_keyboard",
+            "peripheral": "keyboard",
+            "key": "Key.page_up",
+            "event": "up"
+        },
+        {
+            "action": "toggle_mouse",
+            "peripheral": "keyboard",
+            "key": "Key.insert",
+            "event": "up"
+        }
+    ],
+    "actions": [
+        {
+            "name": "kill",
+            "description": "This will kill the whole script and all threads listening for inputs.",
+            "example": {
+                "action": "kill",
+                "peripheral": "keyboard",
+                "key": "Key.home",
+                "event": "up"
+            }
+        },
+        {
+            "name": "kill_mouse",
+            "description": "This will kill the only mouse thread and listener.",
+            "example": {
+                "action": "kill_mouse",
+                "peripheral": "mouse",
+                "key": "Button.x1",
+                "event": "up"
+            }
+        },
+        {
+            "name": "kill_keyboard",
+            "description": "This will kill the only keyboard thread and listener.",
+            "example": {
+                "action": "kill_keyboard",
+                "peripheral": "keyboard",
+                "key": "Key.page_down",
+                "event": "up"
+            }
+        },
+        {
+            "name": "toggle",
+            "description": "This will toggle if the script should react to keyboard and mouse input when supposed to.",
+            "example": {
+                "action": "toggle",
+                "peripheral": "keyboard",
+                "key": "Key.page_up",
+                "event": "up"
+            }
+        },
+        {
+            "name": "toggle_mouse",
+            "description": "This will toggle if the script should react to mouse input when supposed to.",
+            "example": {
+                "action": "toggle_mouse",
+                "peripheral": "keyboard",
+                "key": "Key.page_up",
+                "event": "up"
+            }
+        },
+        {
+            "name": "toggle_keyboard",
+            "description": "This will toggle if the script should react to keyboard input when supposed to.",
+            "example": {
+                "action": "toggle_keyboard",
+                "peripheral": "keyboard",
+                "key": "Key.page_up",
+                "event": "up"
+            }
+        },
+
+        {
+            "name": "calibrate",
+            "description": "This will make it listen on all keys on the number row. Each time a key is pressed, give it about 1 second to make sure it has calibrated that slot correctly. This will make sure the script knows where to check for active slots and make it work for all screen sizes and UI settings. It is only needed the first time you use the script or if you change screen resolution or UI settings in Terraria."
+        },
+        {
+            "name": "staff_of_discord",
+            "description": "Switch to staff of discord, click the mouse, switch back to previous active slot.",
+            "example": {
+            }
+        },
+        {
+            "name": "cellphone",
+            "description": "Switch to cellphone, click the mouse, switch back to previous active slot.",
+            "example": {
+            }
+        }
+    ]
+}

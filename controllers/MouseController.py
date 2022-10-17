@@ -12,11 +12,11 @@ sys.path.append(path.dirname(__file__))
 from shared import *
 
 class MouseController:
-    def __init__(self, debug = False, paused = False, base_path = "", config_path = "", logger = None):
+    def __init__(self, debug = False, paused = False, base_path = "", config = "", logger = None):
         self.THREAD = None
         self.DEBUG = debug
         self.PAUSED = paused
-        self.CONFIG_PATH = path.join(base_path, config_path)
+        self.CONFIG_PATH = path.join(base_path, "config", config)
 
         self.LOGGER = logger
         self.LISTENER = None

@@ -1,17 +1,32 @@
-17/10/2022 19:05:36: LOG CLEARED
-17/10/2022 19:05:36: KeyboardController Started...
-17/10/2022 19:05:36: MouseController Started...
-17/10/2022 19:05:36: Button.left - down - x: 2426 y: 800
-17/10/2022 19:05:36: Button.left - up - x: 2426 y: 800
-17/10/2022 19:05:37: Button.right - down - x: 2426 y: 800
-17/10/2022 19:05:37: Button.right - up - x: 2426 y: 800
-17/10/2022 19:05:38: 'a' down
-17/10/2022 19:05:38: 's' down
-17/10/2022 19:05:38: 'a' up
-17/10/2022 19:05:38: 'd' down
-17/10/2022 19:05:38: 's' up
-17/10/2022 19:05:38: 'd' up
-17/10/2022 19:05:39: Key.end down
-17/10/2022 19:05:39: Key.end up
-17/10/2022 19:05:39: Keyboard Listener Terminated
-17/10/2022 19:05:39: Mouse Listener Terminated
+17/10/2022 19:24:17: LOG CLEARED
+17/10/2022 19:24:17: KeyboardController Started...
+17/10/2022 19:24:17: MouseController Started...
+17/10/2022 19:24:21: Button.left - down - x: 2996 y: 755
+17/10/2022 19:24:21: Button.left - up - x: 2996 y: 755
+17/10/2022 19:24:22: Button.right - down - x: 2996 y: 755
+17/10/2022 19:24:22: Button.right - up - x: 2994 y: 757
+17/10/2022 19:24:23: 'n' down
+17/10/2022 19:24:23: 'm' down
+17/10/2022 19:24:23: 'j' down
+17/10/2022 19:24:23: 'n' up
+17/10/2022 19:24:23: 'j' up
+17/10/2022 19:24:23: ',' down
+17/10/2022 19:24:23: 'm' up
+17/10/2022 19:24:23: 'j' down
+17/10/2022 19:24:23: ',' up
+17/10/2022 19:24:23: 'k' down
+17/10/2022 19:24:23: 'j' up
+17/10/2022 19:24:23: 'k' up
+17/10/2022 19:24:24: '8' down
+17/10/2022 19:24:24: '9' down
+17/10/2022 19:24:24: '0' down
+17/10/2022 19:24:24: '8' up
+17/10/2022 19:24:24: '9' up
+17/10/2022 19:24:24: '0' up
+17/10/2022 19:24:25: '-' down
+17/10/2022 19:24:25: Handle Custom Action from this awesome new action controller: firstAction
+17/10/2022 19:24:25: '-' up
+17/10/2022 19:24:26: Key.end down
+17/10/2022 19:24:26: Key.end up
+17/10/2022 19:24:26: Keyboard Listener Terminated
+17/10/2022 19:24:26: Mouse Listener Terminated

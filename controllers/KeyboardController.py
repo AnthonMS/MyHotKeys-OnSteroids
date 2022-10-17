@@ -13,11 +13,11 @@ from shared import *
 ## Local dependencies
 
 class KeyboardController:
-    def __init__(self, debug = False, paused = False, base_path = "", config_path = "", logger = None):
+    def __init__(self, debug = False, paused = False, base_path = "", config = "", logger = None):
         self.THREAD = None
         self.DEBUG = debug
         self.PAUSED = paused
-        self.CONFIG_PATH = path.join(base_path, config_path)
+        self.CONFIG_PATH = path.join(base_path, "config", config)
 
         self.LOGGER = logger
         self.LISTENER = None
@@ -128,7 +128,7 @@ class KeyboardController:
 
     
 ## Usage:
-# keyboardCtrl = KeyboardController(debug = True, config_path = "keybindings.json", base_path = "D:\Folders\Configs", logger = logger)
+# keyboardCtrl = KeyboardController(debug = True, config = "keybindings.json", base_path = "D:\Folders\Configs", logger = logger)
 # actionCtrl = ActionController(keyboard_ctrl = keyboardCtrl, logger = logger)
 # keyboardCtrl.ACTION_CTRL = actionCtrl
 # keyboardCtrl.start_listener()

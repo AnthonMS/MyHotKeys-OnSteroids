@@ -8,6 +8,7 @@ import json
 from controllers.Logger import Logger
 from controllers.KeyboardController import KeyboardController
 from controllers.MouseController import MouseController
+from controllers.ActionController import ActionController
 # from action_controllers.terraria.ActionController import ActionController
 
 def displayHelp():
@@ -38,7 +39,7 @@ def displayHelp():
 
 if __name__ == "__main__":
     base_path_log = path.dirname(__file__) + "/logs"
-    base_path_config = path.dirname(__file__) + "/config"
+    base_path = path.dirname(__file__)
     config = ""
     ctrl_name = ""
     log = "main.log"
@@ -74,14 +75,10 @@ if __name__ == "__main__":
                 disable_mouse = True
 
         elif "--base=" in arg:
-            base_path_log = arg.replace('--base=', '')
-            base_path_config = arg.replace('--base=', '')
+            base_path = arg.replace('--base=', '')
 
         elif "--base-log=" in arg:
             base_path_log = arg.replace('--base-log=', '')
-
-        elif "--base-config=" in arg:
-            base_path_config = arg.replace('--base-config=', '')
 
         elif "--config=" in arg:
             config = arg.replace('--config=', '') + ".json"
@@ -105,12 +102,14 @@ if __name__ == "__main__":
     logger.clear()
     action_logger.clear()
     
+    try:
+        mod = __import__(f'action_controllers.{ctrl_name}.ActionController', fromlist=['ActionController'])
+        ActionControllerDynamic = getattr(mod, 'ActionController')
+    except ModuleNotFoundError:
+        pass
 
-    mod = __import__(f'action_controllers.{ctrl_name}.ActionController', fromlist=['ActionController'])
-    ActionController = getattr(mod, 'ActionController')
-
-    keyboardCtrl = KeyboardController(debug = debug_keyboard, config_path = config, base_path = base_path_config, logger = logger)
-    mouseCtrl = MouseController(debug = debug_mouse, config_path = config, base_path = base_path_config, logger = logger)
+    keyboardCtrl = KeyboardController(debug = debug_keyboard, config = config, base_path = base_path, logger = logger)
+    mouseCtrl = MouseController(debug = debug_mouse, config = config, base_path = base_path, logger = logger)
     actionCtrl = ActionController(debug = debug_actions, keyboard_ctrl = keyboardCtrl, mouse_ctrl = mouseCtrl, logger = action_logger)
 
     keyboardCtrl.ACTION_CTRL = actionCtrl
@@ -123,7 +122,7 @@ if __name__ == "__main__":
     kill_switch_keyboard = None
     kill_switch_mouse = None
 
-    f = open(path.join(base_path_config, config), "r")
+    f = open(path.join(base_path, "config", config), "r")
     config_data = json.load(f)
     f.close()
     for bind in config_data['binds']:
