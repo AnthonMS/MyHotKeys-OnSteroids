@@ -1,9 +1,17 @@
-# MyHotKey-OnSteroids
-### Welcome to MyHotKeys-OnSteroids. This is my take on creating a program for easily configuring hotkeys and shortcuts. Where your HotKeys are configured in json and your actions are written in Python. The fact that your actions are written in python, gives you full control to do whatever you want to, when a key or button is pressed down, up, held or any of the other event types available.
+# MyHotKeys-OnSteroids
+**Welcome to mhk-os**<br>
+
+This first iteration was created in 1 day. So keep that in mind when reading through the code and trying to use it. I know it still lacks a lot of stuff, but I think I will be working on this going forward since I see a massive benefit over this compared to let's say AutoHotKey (Take into consideration; My very limited knowledge about AHK). 
+<br> 
+
+This is my take on creating a program for easily configuring hotkeys and shortcuts. Where your HotKeys are configured in json and your actions are written in Python. The fact that your actions are written in python, gives you full control to do whatever you want to, when a key or button is pressed down, up, held or any of the other event types available now or coming later. <br> 
+
+**Disclaimer:** I do not take responsibilty for what people use this for. I did not have malicious intent in mind when creating it. I just wanted something where I could create hotkeys for more advanced actions, that were written in a real and well documented programming language.
 
 
 ## TODO:
-- Instead of mkaing a shared.py for the shared functions between input controllers. Make a "InputController" which will be the parent class for both mouse and keyboard. This way they will inherit the functionality instead of importing it.
+- Instead of making a shared.py for the shared functions between input controllers. Make a "InputController" which will be the parent class for both mouse and keyboard. This way they will inherit the functionality instead of importing it.
+- Instead of importing different ActionController, we should just have one default ActionController that imports all functions from an "actions" directory where there are files holding actions. One file can hold multiple functions and there can be multiple files in actions folder.
 - Make bind config key "hold_time". This will make it so hold will only fire when it has been held for given amount of time.
 - Research making the script a command in windows registry
 - Research creating windows tray icons that when clicked will show buttons for "pause"/"start" and "kill" for mouse, keyboard and both
