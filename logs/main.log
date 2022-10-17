@@ -1,7 +1,19 @@
-17/10/2022 21:00:37: LOG CLEARED
-17/10/2022 21:00:37: KeyboardController Started...
-17/10/2022 21:00:37: MouseController Started...
-17/10/2022 21:00:38: Key.end down
-17/10/2022 21:00:39: Key.end up
-17/10/2022 21:00:39: Keyboard Listener Terminated
-17/10/2022 21:00:39: Mouse Listener Terminated
+17/10/2022 21:17:53: LOG CLEARED
+17/10/2022 21:17:53: KeyboardController Started...
+17/10/2022 21:17:53: MouseController Started...
+17/10/2022 21:17:54: 's' down
+17/10/2022 21:17:54: 'd' down
+17/10/2022 21:17:54: 's' up
+17/10/2022 21:17:54: 'f' down
+17/10/2022 21:17:54: 'd' up
+17/10/2022 21:17:54: 'f' up
+17/10/2022 21:17:56: '*' down
+17/10/2022 21:17:57: '*' up
+17/10/2022 21:17:57: '-' down
+17/10/2022 21:17:57: '-' up
+17/10/2022 21:17:58: '+' down
+17/10/2022 21:17:58: '+' up
+17/10/2022 21:17:59: Key.end down
+17/10/2022 21:17:59: Key.end up
+17/10/2022 21:17:59: Keyboard Listener Terminated
+17/10/2022 21:17:59: Mouse Listener Terminated
