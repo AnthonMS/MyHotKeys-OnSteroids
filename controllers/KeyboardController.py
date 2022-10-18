@@ -12,7 +12,6 @@ from controllers.InputController import InputController
 class KeyboardController(InputController):
     def __init__(self, debug = False, paused = False, base_path = "", config = "", logger = None):
         super().__init__(debug, paused, base_path, config, logger, "keyboard")
-        self.INPUT_TYPE = "keyboard"
         self.LAST_KEY = None
         self.HOLD = False
         self.RELEASED = True
@@ -101,12 +100,9 @@ class KeyboardController(InputController):
 
     def key_down(self, key):
         keep_alive = True
-        # self.debug(f"{key} down")
         self.debug(f"{key} down")
 
-        # self.addEventToHistory(key, "down")
-        self.addEventToHistory(key, "down")
-        # self.doActionIfThereIsOne(key, self.EVENTS_DOWN)
+        newest_event = self.addEventToHistory(key, "down")
         keep_alive = self.doActionIfThereIsOne(key, self.EVENTS_DOWN)
 
         self.LAST_KEY = key
@@ -114,25 +110,27 @@ class KeyboardController(InputController):
 
     def key_hold(self, key):
         keep_alive = True
-        # self.debug(f"{key} hold")
         self.debug(f"{key} hold")
 
-        # self.addEventToHistory(key, "hold")
-        self.addEventToHistory(key, "hold")
-        # self.doActionIfThereIsOne(key, self.EVENTS_HOLD)
-        keep_alive = self.doActionIfThereIsOne(key, self.EVENTS_HOLD)
+        last_event = self.ACTION_CTRL.getLastEvent()
+        newest_event = self.addEventToHistory(key, "hold")
+
+        if (last_event['event'] == "down"):
+            keep_alive = self.doActionIfThereIsOne(key, self.BINDS_HOLD_START)
+        else:
+            keep_alive = self.doActionIfThereIsOne(key, self.EVENTS_HOLD)
 
         return keep_alive
 
     def key_up(self, key):
         keep_alive = True
-        # self.debug(f"{key} up")
         self.debug(f"{key} up")
         
-        # self.addEventToHistory(key, "up")
-        self.addEventToHistory(key, "up")
-        # self.doActionIfThereIsOne(key, self.EVENTS_UP)
-        keep_alive = self.doActionIfThereIsOne(key, self.EVENTS_UP)
+        newest_event = self.addEventToHistory(key, "up")
+        if (newest_event['event'] == "hold_stop"):
+            keep_alive = self.doActionIfThereIsOne(key, self.BINDS_HOLD_STOP)
+        else:
+            keep_alive = self.doActionIfThereIsOne(key, self.EVENTS_UP)
         
         return keep_alive
 

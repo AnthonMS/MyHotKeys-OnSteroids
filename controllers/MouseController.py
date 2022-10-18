@@ -16,7 +16,6 @@ class MouseController(InputController):
         self.CURRENT_BUTTON = None
         self.PRESSED = False
 
-
         self.load_keybinds()
     
     def __str__(self):

@@ -23,9 +23,11 @@ class InputController:
         self.LISTENER = None
         self.ACTION_CTRL = None
         self.KEYBINDS = []
-        self.EVENTS_UP = []
-        self.EVENTS_DOWN = []
-        self.EVENTS_HOLD = []
+        self.EVENTS_UP = [] # UP_BINDS
+        self.EVENTS_DOWN = [] # DOWN_BINDS
+        self.EVENTS_HOLD = [] # HOLD_BINDS
+        self.BINDS_HOLD_START = []
+        self.BINDS_HOLD_STOP = []
     
     def __str__(self):
         return f"""
@@ -52,6 +54,10 @@ class InputController:
                     self.EVENTS_DOWN.append(bind)
                 elif (bind['event'] == "hold"):
                     self.EVENTS_HOLD.append(bind)
+                elif (bind['event'] == "hold_start"):
+                    self.BINDS_HOLD_START.append(bind)
+                elif (bind['event'] == "hold_stop"):
+                    self.BINDS_HOLD_STOP.append(bind)
 
     def debug(self, str):
         if (self.DEBUG):
@@ -95,6 +101,8 @@ class InputController:
                 self.ACTION_CTRL.EVENT_HISTORY.append(new_event)
         else:
             self.ACTION_CTRL.EVENT_HISTORY.append(new_event)
+        
+        return new_event
 
                 
     ## Check if the pressed key exist in the given binds list

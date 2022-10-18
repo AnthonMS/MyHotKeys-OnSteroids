@@ -10,14 +10,14 @@ This is my take on creating a program for easily configuring hotkeys and shortcu
 
 
 ## TODO:
-- Make hold_start and hold_stop instead of only hold action
+- Create array of currently held down keys/buttons in InputController
 - Make config key "hold_time". This will make it so hold will only fire when it has been held for given amount of time.
 - Add new config key "event_type" which will take in the values "once"/"toggle"/"until_release"/"sequence"/"combination"
-     This key will tell the script if an action should be fired once, until button/key is released or until the button/key is pressed again.
+     This key will tell the script if an action should be fired once, until button/key is released or continuously until the button/key is pressed again.
      The until_release will obviously only be for "hold_start" actions
      "sequence" is for when it is an array of keys instead of a single key. This means the action will happen if the order of keys pressed are the same as in the list.
      "combination" is pressing multiple buttons at the same time
-- Thoroughly test actions while clicking buttons at the same time as other buttons/keys. Test if we can create actions for keys like ctrl+k or if the combination value in event_type determine this?
+- Thoroughly test actions while clicking buttons at the same time as other buttons/keys. Test if we can create actions for keys like ctrl+k or if the combination value in event_type should determine this?
 
 ## Extras
 - Create a package-installer helper function in ScriptController that will install the needed packages automatically. 
@@ -65,7 +65,10 @@ This is my take on creating a program for easily configuring hotkeys and shortcu
 - Make the functions in keyboard and mouse controllers into shared functions in a seperate file
 - Instead of importing different ActionController, we should just have one default ActionController that imports all functions from an "actions" directory where there are files holding actions. One file can hold multiple functions and there can be multiple files in actions folder.
 - Update ScriptController to only import functions with names that exist in config.
-- Import actions nested in directories once in /actions. Ex.: "/actions/MyActions/MyAwesomeActions.py"Make InputController which will be the parent class for both mouse and keyboard. This way they will inherit the functionality instead of importing it from shared.py.
+- Import actions nested in directories once in /actions. Ex.: "/actions/MyActions/MyAwesomeActions.py" 
+- Create InputController which will be a parent class for both mouse and keyboard. This way, they will inherit the functionality instead of importing it from shared.py.
+- Make hold_start and hold_stop instead of only hold action. event key can now hold: "down", "up", "hold", "hold_start", "hold_stop"
+     "hold" will now function as a continuous call of the action when the key is held down. The others will do as they say.
 
 ## Usage:
 ```

@@ -9,14 +9,26 @@
         {
             "action": "secondAction",
             "peripheral": "keyboard",
-            "key": "+",
+            "key": "*",
             "event": "down"
         },
         {
             "action": "thirdAction",
             "peripheral": "keyboard",
-            "key": "*",
-            "event": "down"
+            "key": "+",
+            "event": "hold"
+        },
+        {
+            "action": "terrariaTest",
+            "peripheral": "keyboard",
+            "key": "+",
+            "event": "hold_start"
+        },
+        {
+            "action": "terrariaTest",
+            "peripheral": "keyboard",
+            "key": "+",
+            "event": "hold_stop"
         },
         {
             "action": "terrariaTest",
