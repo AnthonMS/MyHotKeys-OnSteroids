@@ -112,18 +112,19 @@ class ScriptController:
             
     def importActions(self):
         all_binds = [*self.KEYBOARD_CTRL.KEYBINDS, *self.MOUSE_CTRL.KEYBINDS]
-        all_actions = []
+        script_actions = ['kill', 'kill_keyboard', 'kill_mouse', 'toggle', 'toggle_keyboard', 'toggle_mouse']
+        actions_to_import = []
         for bind in all_binds:
-            all_actions.append(bind['action'])
-            print(f"Importing action: {bind['action']}")
+            if ( not bind['action'] in script_actions):
+                actions_to_import.append(bind['action'])
 
         dir_path = os.path.join(self.BASE_PATH, "actions")
-        # dir_path = os.path.dirname(os.path.abspath(__file__))
         files_in_dir = [f[:-3] for f in os.listdir(dir_path) if f.endswith('.py') and f != '__init__.py']
         dirs_in_dir = [f for f in os.listdir(dir_path) if os.path.isdir(dir_path+"/"+f) and f != '__pycache__' ]
         ## TODO
         ## Should it go into all files in these folders? Yes But not into other subfolders.
 
+        ## Import actions located in root of /actions
         for f in files_in_dir:
             mod = __import__('actions.'+f, fromlist=[f])
             to_import = [getattr(mod, x) for x in dir(mod)]
@@ -131,8 +132,22 @@ class ScriptController:
 
             for i in to_import:
                 try:
-                    if i.__name__ in all_actions and not i.__name__ in self.ACTIONS:
+                    if i.__name__ in actions_to_import and not i.__name__ in self.ACTIONS:
                         setattr(sys.modules[__name__], i.__name__, i)
                         self.ACTIONS.append(i.__name__)
                 except AttributeError:
                     pass
+        
+        for d in dirs_in_dir:
+            files_in_dir = [f[:-3] for f in os.listdir(os.path.join(dir_path, d)) if f.endswith('.py') and f != '__init__.py']
+            for f in files_in_dir:
+                mod = __import__('actions.'+d+'.'+f, fromlist=[f])
+                to_import = [getattr(mod, x) for x in dir(mod)]
+                for i in to_import:
+                    try:
+                        if i.__name__ in actions_to_import and not i.__name__ in self.ACTIONS:
+                            setattr(sys.modules[__name__], i.__name__, i)
+                            self.ACTIONS.append(i.__name__)
+                    except AttributeError:
+                        pass
+            

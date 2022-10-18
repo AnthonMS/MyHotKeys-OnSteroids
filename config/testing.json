@@ -35,24 +35,6 @@
             "event": "up"
         },
         {
-            "action": "kill_keyboard",
-            "peripheral": "keyboard",
-            "key": "Key.page_down",
-            "event": "up"
-        },
-        {
-            "action": "kill_mouse",
-            "peripheral": "mouse",
-            "key": "Button.x1",
-            "event": "up"
-        },
-        {
-            "action": "kill_mouse",
-            "peripheral": "keyboard",
-            "key": "Key.delete",
-            "event": "up"
-        },
-        {
             "action": "toggle",
             "peripheral": "keyboard",
             "key": "Key.home",

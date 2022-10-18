@@ -7,29 +7,17 @@ from datetime import datetime
 from pynput.mouse import Listener
 
 ## Local dependencies
-## Append this directory to path (If append messed change to: sys.path.insert(0, path.dirname(__file__)))
-sys.path.append(path.dirname(__file__))
-from shared import *
+from controllers.InputController import InputController
 
-class MouseController:
+class MouseController(InputController):
     def __init__(self, debug = False, paused = False, base_path = "", config = "", logger = None):
-        self.THREAD = None
-        self.DEBUG = debug
-        self.PAUSED = paused
-        self.CONFIG_PATH = path.join(base_path, "config", config)
-
-        self.LOGGER = logger
-        self.LISTENER = None
-        self.ACTION_CTRL = None
-        self.KEYBINDS = []
-        self.EVENTS_UP = []
-        self.EVENTS_DOWN = []
-        self.EVENTS_HOLD = []
-        self.CURRENT_BUTTON = None
+        super().__init__(debug, paused, base_path, config, logger, "mouse")
         self.LAST_BUTTON = None
+        self.CURRENT_BUTTON = None
         self.PRESSED = False
 
-        load_keybinds(self, "mouse")
+
+        self.load_keybinds()
     
     def __str__(self):
         return f"""
@@ -48,7 +36,7 @@ class MouseController:
     def start_listener(self):
         self.THREAD = threading.Thread(target=self.start_listener_thread, name="MouseController", args=[])
         self.THREAD.start()
-        log(self, "MouseController Started...")
+        self.log("MouseController Started...")
     
     def start_listener_thread(self):
         if (self.ACTION_CTRL == None):
@@ -73,10 +61,12 @@ class MouseController:
         else:
             keep_alive = self.button_up(button, x, y)
 
+        if (keep_alive is None):
+            return True # Keep alive
         if (isinstance(keep_alive, bool)):
             return keep_alive
 
-        if ("kill" in keep_alive):
+        if (not keep_alive or "kill" in keep_alive):
             ## TODO: Make it kill both mouse and keyboard
             return False
         else:
@@ -96,10 +86,10 @@ class MouseController:
         self.CURRENT_BUTTON = button
         self.PRESSED = True
         keep_alive = True
-        debug(self, f"{button} - down - x: {x} y: {y}")
+        self.debug(f"{button} - down - x: {x} y: {y}")
 
-        addEventToHistory(self, button, "down")
-        doActionIfThereIsOne(self, button, self.EVENTS_DOWN)
+        self.addEventToHistory(button, "down")
+        self.doActionIfThereIsOne(button, self.EVENTS_DOWN)
 
         self.LAST_BUTTON = button
         return keep_alive
@@ -107,17 +97,17 @@ class MouseController:
     def button_up(self, button, x, y):
         self.PRESSED = False
         keep_alive = True
-        debug(self, f"{button} - up - x: {x} y: {y}")
+        self.debug(f"{button} - up - x: {x} y: {y}")
 
-        addEventToHistory(self, button, "up")
-        doActionIfThereIsOne(self, button, self.EVENTS_UP)
+        self.addEventToHistory(button, "up")
+        self.doActionIfThereIsOne(button, self.EVENTS_UP)
         
         return keep_alive
 
 
     def button_hold(self, button, x, y):
         keep_alive = True
-        debug(self, f"{button} - hold - x: {x} y: {y}")
+        self.debug(f"{button} - hold - x: {x} y: {y}")
 
         return keep_alive
 

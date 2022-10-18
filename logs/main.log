@@ -1,7 +1,13 @@
-17/10/2022 22:03:29: LOG CLEARED
-17/10/2022 22:03:29: KeyboardController Started...
-17/10/2022 22:03:29: MouseController Started...
-17/10/2022 22:03:30: Key.end down
-17/10/2022 22:03:31: Key.end up
-17/10/2022 22:03:31: Keyboard Listener Terminated
-17/10/2022 22:03:31: Mouse Listener Terminated
+18/10/2022 21:12:26: LOG CLEARED
+18/10/2022 21:12:26: KeyboardController Started...
+18/10/2022 21:12:26: MouseController Started...
+18/10/2022 21:12:27: 'j' down
+18/10/2022 21:12:27: 'k' down
+18/10/2022 21:12:27: 'l' down
+18/10/2022 21:12:27: 'j' up
+18/10/2022 21:12:27: 'k' up
+18/10/2022 21:12:27: 'l' up
+18/10/2022 21:12:28: Key.end down
+18/10/2022 21:12:28: Key.end up
+18/10/2022 21:12:28: Keyboard Listener Terminated
+18/10/2022 21:12:28: Mouse Listener Terminated

@@ -1,37 +1,23 @@
 ## Packages
-from os import path
 import sys
+from os import path
 import threading
 import json
 from datetime import datetime
 from pynput.keyboard import Listener
 
-## Append this directory to path (If append messed change to: sys.path.insert(0, path.dirname(__file__)))
-sys.path.append(path.dirname(__file__))
-from shared import *
-
 ## Local dependencies
+from controllers.InputController import InputController
 
-class KeyboardController:
+class KeyboardController(InputController):
     def __init__(self, debug = False, paused = False, base_path = "", config = "", logger = None):
-        self.THREAD = None
-        self.DEBUG = debug
-        self.PAUSED = paused
-        self.CONFIG_PATH = path.join(base_path, "config", config)
-
-        self.LOGGER = logger
-        self.LISTENER = None
-        self.ACTION_CTRL = None
-        self.KEYBINDS = []
-        self.EVENTS_UP = []
-        self.EVENTS_DOWN = []
-        self.EVENTS_HOLD = []
+        super().__init__(debug, paused, base_path, config, logger, "keyboard")
+        self.INPUT_TYPE = "keyboard"
         self.LAST_KEY = None
         self.HOLD = False
         self.RELEASED = True
 
-        # self.load_keybinds()
-        load_keybinds(self, "keyboard")
+        self.load_keybinds()
     
     def __str__(self):
         # print('{0} at {1}'.format('Pressed' if pressed else 'Released',x, y)))
@@ -51,7 +37,7 @@ class KeyboardController:
         self.THREAD = threading.Thread(target=self.start_listener_thread, name="KeyboardController", args=[])
         self.THREAD.start()
         # self.log("KeyboardController Started...")
-        log(self, "KeyboardController Started...")
+        self.log("KeyboardController Started...")
 
     def start_listener_thread(self):
         if (self.ACTION_CTRL == None):
@@ -82,9 +68,12 @@ class KeyboardController:
         else:
             self.RELEASED = False
             keep_alive = self.key_down(key)
-        
+
+        if (keep_alive is None):
+            return True # Keep alive
         if (isinstance(keep_alive, bool)):
             return keep_alive
+
         if (not keep_alive or "kill" in keep_alive):
             ## TODO: Make it kill both mouse and keyboard
             return False
@@ -97,12 +86,15 @@ class KeyboardController:
         self.RELEASED = True
 
         keep_alive = self.key_up(key)
-        
+
+        if (keep_alive is None):
+            return True # Keep alive
         if (isinstance(keep_alive, bool)):
-            return keep_alive
+            return keep_alive 
+
         if ("kill" in keep_alive):
-            ## TODO: Make it kill both mouse and keyboard
-            return False
+            ## TODO: Kill both mouse and keyboard
+            return False 
         else:
             return True
 
@@ -110,12 +102,12 @@ class KeyboardController:
     def key_down(self, key):
         keep_alive = True
         # self.debug(f"{key} down")
-        debug(self, f"{key} down")
+        self.debug(f"{key} down")
 
         # self.addEventToHistory(key, "down")
-        addEventToHistory(self, key, "down")
+        self.addEventToHistory(key, "down")
         # self.doActionIfThereIsOne(key, self.EVENTS_DOWN)
-        keep_alive = doActionIfThereIsOne(self, key, self.EVENTS_DOWN)
+        keep_alive = self.doActionIfThereIsOne(key, self.EVENTS_DOWN)
 
         self.LAST_KEY = key
         return keep_alive
@@ -123,24 +115,24 @@ class KeyboardController:
     def key_hold(self, key):
         keep_alive = True
         # self.debug(f"{key} hold")
-        debug(self, f"{key} hold")
+        self.debug(f"{key} hold")
 
         # self.addEventToHistory(key, "hold")
-        addEventToHistory(self, key, "hold")
+        self.addEventToHistory(key, "hold")
         # self.doActionIfThereIsOne(key, self.EVENTS_HOLD)
-        keep_alive = doActionIfThereIsOne(self, key, self.EVENTS_HOLD)
+        keep_alive = self.doActionIfThereIsOne(key, self.EVENTS_HOLD)
 
         return keep_alive
 
     def key_up(self, key):
         keep_alive = True
         # self.debug(f"{key} up")
-        debug(self, f"{key} up")
+        self.debug(f"{key} up")
         
         # self.addEventToHistory(key, "up")
-        addEventToHistory(self, key, "up")
+        self.addEventToHistory(key, "up")
         # self.doActionIfThereIsOne(key, self.EVENTS_UP)
-        keep_alive = doActionIfThereIsOne(self, key, self.EVENTS_UP)
+        keep_alive = self.doActionIfThereIsOne(key, self.EVENTS_UP)
         
         return keep_alive
 

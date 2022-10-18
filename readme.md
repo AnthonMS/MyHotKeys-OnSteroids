@@ -10,11 +10,9 @@ This is my take on creating a program for easily configuring hotkeys and shortcu
 
 
 ## TODO:
-- Update action importer to go through all folders in actions so we can split action scripts up into folders. Do not do it recursively since actions should just be stored in the root of actions or in the root of another folder in actions.
-- Instead of making a shared.py for the shared functions between input controllers. Make a "InputController" which will be the parent class for both mouse and keyboard. This way they will inherit the functionality instead of importing it.
+- Create a package-installer helper function in ScriptController that will install the needed packages automatically. 
 - Research making the script a command in windows registry
 - Research creating windows tray icons that when clicked will show buttons for "pause"/"start" and "kill" for mouse, keyboard and both
-- Create a package-installer helper function in ScriptController that will install the needed packages automatically. ActionController should come with a requirements.txt file.
 - Make hold_start and hold_stop instead of only hold action
 - Make config key "hold_time". This will make it so hold will only fire when it has been held for given amount of time.
 - Add new config key "event_type" which will take in the values "once"/"toggle"/"until_release"/"sequence"
@@ -63,6 +61,7 @@ This is my take on creating a program for easily configuring hotkeys and shortcu
 - Make the functions in keyboard and mouse controllers into shared functions in a seperate file
 - Instead of importing different ActionController, we should just have one default ActionController that imports all functions from an "actions" directory where there are files holding actions. One file can hold multiple functions and there can be multiple files in actions folder.
 - Update ScriptController to only import functions with names that exist in config.
+- Import actions nested in directories once in /actions. Ex.: "/actions/MyActions/MyAwesomeActions.py"Make InputController which will be the parent class for both mouse and keyboard. This way they will inherit the functionality instead of importing it from shared.py.
 
 ## Usage:
 # .\AutoHotKey-OS\mhk-os.py [ --config=terraria | default=default ]
