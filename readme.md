@@ -10,15 +10,19 @@ This is my take on creating a program for easily configuring hotkeys and shortcu
 
 
 ## TODO:
-- Create a package-installer helper function in ScriptController that will install the needed packages automatically. 
-- Research making the script a command in windows registry
-- Research creating windows tray icons that when clicked will show buttons for "pause"/"start" and "kill" for mouse, keyboard and both
 - Make hold_start and hold_stop instead of only hold action
 - Make config key "hold_time". This will make it so hold will only fire when it has been held for given amount of time.
-- Add new config key "event_type" which will take in the values "once"/"toggle"/"until_release"/"sequence"
+- Add new config key "event_type" which will take in the values "once"/"toggle"/"until_release"/"sequence"/"combination"
      This key will tell the script if an action should be fired once, until button/key is released or until the button/key is pressed again.
      The until_release will obviously only be for "hold_start" actions
      "sequence" is for when it is an array of keys instead of a single key. This means the action will happen if the order of keys pressed are the same as in the list.
+     "combination" is pressing multiple buttons at the same time
+- Thoroughly test actions while clicking buttons at the same time as other buttons/keys. Test if we can create actions for keys like ctrl+k or if the combination value in event_type determine this?
+
+## Extras
+- Create a package-installer helper function in ScriptController that will install the needed packages automatically. 
+- Research making the script a command in windows registry
+- Research creating windows tray icons that when clicked will show buttons for "pause"/"start" and "kill" for mouse, keyboard and both
 
 
 
@@ -64,10 +68,12 @@ This is my take on creating a program for easily configuring hotkeys and shortcu
 - Import actions nested in directories once in /actions. Ex.: "/actions/MyActions/MyAwesomeActions.py"Make InputController which will be the parent class for both mouse and keyboard. This way they will inherit the functionality instead of importing it from shared.py.
 
 ## Usage:
-# .\AutoHotKey-OS\mhk-os.py [ --config=terraria | default=default ]
-# Args:
-#   - "--base=": Will make this the base path for both logfiles and config files. Default is path this script is located in.
-#   - "--base-log=": Will make this the base path for logfiles only. Default is path this script is located in + "/logs"
-#   - "--log=": Filename for log and relative path compared to base path for log files. Default is "main.log".
-#   - "--base-config=": Will make this the base path for config files only. Default is path this script is located in + "/config"
-#   - "--config=": Name for config file and ActionController to use. So this has to match the name of a json file in the config path AND it has to match the name of a folder for an ActionController
+```
+.\AutoHotKey-OS\mhk-os.py [ --config=terraria | default ]
+Args:
+  - "--base=": Will make this the base path for both logfiles and config files. Default is path this script is located in.
+  - "--base-log=": Will make this the base path for logfiles only. Default is path this script is located in + "/logs"
+  - "--log=": Filename for log and relative path compared to base path for log files. Default is "main.log".
+  - "--base-config=": Will make this the base path for config files only. Default is path this script is located in + "/config"
+  - "--config=": Name for config file and ActionController to use. So this has to match the name of a json file in the config path AND it has to match the name of a folder for an ActionController
+```
