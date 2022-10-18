@@ -20,20 +20,27 @@ def displayHelp():
         For now mouse only accept up/down events.
         For now the hold actions will be fired constantly until key is released.
 
+        Example:
+            ./mhk-os.py --config=default
+
         Arguments:
             help                Display this help menu and terminate script
-            --base              Base path for both logfiles and config files. 
-                                Default is path this script is located in + "/logs" or "/config" accordingly.
-            --base-log          Base path for log files only. 
-                                Default is path this script is located in + "/logs"
-            --log               Filename for log and relative path compared to log base path. 
-                                Default is "main.log".
-            --base-config       Base path for config files only. 
-                                Default is path this script is located in + "/config"
+            
             --config            Name for config file and ActionController to use. So this has to match the name of a json file in the config path AND it has to match the name of a folder for an ActionController
                                 Required!
             disable-keyboard    Disable the keyboard listener
             disable-mouse       Disable the mouse listener
+            debug
+            debug-keyboard
+            debug-mouse
+            --base              Base path for config files. 
+                                Default is path this script is located in + "/logs" or "/config" accordingly.
+            --base-log          Base path for log files. 
+                                Default is path this script is located in + "/logs"
+            --log               Filename for log and relative path compared to log base path. 
+                                Default is "main.log".
+                                Default is path this script is located in + "/config"
+
 
     """)
 

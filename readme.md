@@ -67,7 +67,7 @@ This is my take on creating a program for easily configuring hotkeys and shortcu
 - Update ScriptController to only import functions with names that exist in config.
 - Import actions nested in directories once in /actions. Ex.: "/actions/MyActions/MyAwesomeActions.py" 
 - Create InputController which will be a parent class for both mouse and keyboard. This way, they will inherit the functionality instead of importing it from shared.py.
-- Make hold_start and hold_stop instead of only hold action. event key can now hold: "down", "up", "hold", "hold_start", "hold_stop"
+- Make hold_start and hold_stop instead of only hold action. event key can now hold: "down", "up", "hold", "hold_start", "hold_stop".<br>
      "hold" will now function as a continuous call of the action when the key is held down. The others will do as they say.
 
 ## Usage:
