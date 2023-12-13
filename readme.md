@@ -1,12 +1,12 @@
 # MyHotKeys-OnSteroids
 **Welcome to mhk-os**<br>
 
-This first iteration was created in 1 day. So keep that in mind when reading through the code and trying to use it. I know it still lacks a lot of stuff, but I think I will be working on this going forward since I see a massive benefit over this compared to let's say AutoHotKey (Take into consideration; My very limited knowledge about AHK). 
+This first iteration was created in 1 day. So keep that in mind when reading through the code and trying to use it. I know it still lacks a lot of stuff, but I think I will be working on this going forward since I see a massive benefit over this compared to let's say AutoHotKey (Take into consideration; My very limited knowledge about AHK). (Update: After using AHK for the past year. Then I will definitely not be working on it going forward. It was a fun project, but AHK is the GOAT. I was just stubborn not learning their scripting language.)
 <br> 
 
 This is my take on creating a program for easily configuring hotkeys and shortcuts. Where your HotKeys are configured in json and your actions are written in Python. The fact that your actions are written in python, gives you full control to do whatever you want to, when a key or button is pressed down, up, held or any of the other event types available now or coming later. <br> 
 
-**Disclaimer:** I do not take responsibilty for what people use this for. I did not have malicious intent in mind when creating it. I just wanted something where I could create hotkeys for more advanced actions, that were written in a real and well documented programming language.
+**Disclaimer:** I do not take responsibilty for what people use this for. I did not have malicious intent in mind when creating it. I just wanted something where I could create hotkeys for more advanced actions, that were written in a well documented programming language I already knew.
 
 
 ## TODO:
