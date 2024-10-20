@@ -1,6 +1,8 @@
 # MyHotKeys-OnSteroids
 **Welcome to mhk-os**<br>
 
+Naahhhh I have been creating the most advanced shit using AHK so I now see that this was just me copiong because I was too lazy to learn the syntax of AHK.
+
 This first iteration was created in 1 day. So keep that in mind when reading through the code and trying to use it. I know it still lacks a lot of stuff, but I think I will be working on this going forward since I see a massive benefit over this compared to let's say AutoHotKey (Take into consideration; My very limited knowledge about AHK). (Update: After using AHK for the past year. Then I will definitely not be working on it going forward. It was a fun project, but AHK is the GOAT. I was just stubborn not learning their scripting language.)
 <br> 
 
